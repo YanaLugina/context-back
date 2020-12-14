@@ -34,13 +34,21 @@ class _FirstScreenState extends State<FirstScreen> {
                   style: TextStyle(fontSize: 24),
                 ),
                 onPressed: () {
-                  Route route = MaterialPageRoute(builder: (context) => SecondScreen());
-                  Navigator.push(context, route)
+                  _returnDataFromSecondScreen(context);
                 }
              ),
           ],
         ),
       ),
     );
+  }
+
+  void _returnDataFromSecondScreen(BuildContext context) async {
+    Route route = MaterialPageRoute(builder: (context) => SecondScreen());
+    final result = await Navigator.push(context, route);
+
+    setState(() {
+      text = result;
+    });
   }
 }
